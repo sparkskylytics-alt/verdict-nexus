@@ -50,6 +50,7 @@ export default {
       fontFamily: {
         serif: ['Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
         sans: ['Inter', 'system-ui', 'sans-serif'],
+                montserrat: ["Montserrat", "sans-serif"],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
