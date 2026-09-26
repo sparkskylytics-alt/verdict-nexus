@@ -37,9 +37,10 @@ function App() {
 }
 
 export default App;*/
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+import { usePageMeta } from "./lib/usePageMeta";
 import DisclaimerModal from "./components/DisclaimerModel";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -61,9 +62,35 @@ import HomePage from "./pages/Home";
 import EduHome from "./pages/EduHome";
 
 
+const PAGE_META: Record<string, { title: string; description: string; noindex?: boolean; canonicalPath?: string }> = {
+  "/": {
+    title: "Verdict Nexus - Legal Services in India",
+    description: "Verdict Nexus offers expert legal services across India. Contact our senior advocates for civil, corporate, and criminal law consultations.",
+  },
+  "/orders": {
+    title: "Court Orders Search | Verdict Nexus",
+    description: "Search and access court order documents online by case number through our secure client portal.",
+  },
+  "/judgment": {
+    title: "Court Judgment Search | Verdict Nexus",
+    description: "Search and view final court judgments online by case number through our secure legal document portal.",
+  },
+  "/Home": {
+    title: "Verdict Nexus - Legal Services in India",
+    description: "Verdict Nexus offers expert legal services across India. Contact our senior advocates for civil, corporate, and criminal law consultations.",
+    canonicalPath: "/",
+  },
+  "/EduHome": {
+    title: "Verdict Nexus",
+    description: "This page is not part of the Verdict Nexus legal services site.",
+    noindex: true,
+  },
+};
+
 function App() {
   const [accepted, setAccepted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,6 +99,9 @@ function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const meta = PAGE_META[location.pathname] ?? PAGE_META["/"];
+  usePageMeta({ ...meta, path: location.pathname });
 
   return (
     <>
