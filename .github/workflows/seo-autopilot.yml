@@ -106,7 +106,7 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           claude_args: |
-            --max-turns 70
+            --max-turns 120
             --allowedTools "Read,Write,Edit,Glob,Grep,Skill,Bash(git log:*),Bash(git show:*),Bash(git diff:*),Bash(ls:*)"
           prompt: |
             Monthly SEO FIX for this website. Use the nextjs-seo-fixer skill and follow both modes. First check package.json:
@@ -119,6 +119,10 @@ jobs:
                4-WEEK RULE: do not change the title, description, H1 or main content of any page that was
                changed in that period. Google needs time to react. Technical fixes (broken schema, missing
                alt text, sitemap errors) are still allowed.
+            0. FIRST, before touching any code, write seo-reports/insights-${{ steps.meta.outputs.date }}.json
+               (format in step 6) with verdict, headline, wins, problems and both action lists, and
+               changes_made as an empty list. At the end, update changes_made in that same file.
+               This file is required even if you run out of time.
             3. Check earlier fixes first. For every page seo-bot changed 4 or more weeks ago, compare its
                numbers before vs after (impressions, clicks, position of its keywords):
                - improved -> KEEP it, do not touch that page;
@@ -202,6 +206,7 @@ jobs:
             echo "result=none" >> "$GITHUB_OUTPUT"; exit 0
           fi
           git commit -q -m "SEO monthly update ${DATE}"
+          echo "files=$(git diff --name-only HEAD~1 HEAD | tr '\n' ',')" >> "$GITHUB_OUTPUT"
 
 
           if [ "$PUSH_MODE" != "pr" ] && [ "$BUILD_OUTCOME" = "success" ]; then
@@ -250,6 +255,7 @@ jobs:
           REPORT_DATE: ${{ steps.meta.outputs.date }}
           PUSH_RESULT: ${{ steps.push.outputs.result }}
           LINK_URL: ${{ steps.push.outputs.url }}
+          CHANGED_FILES: ${{ steps.push.outputs.files }}
           JOB_STATUS: ${{ job.status }}
           RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: PYTHONPATH=scripts/seo python scripts/seo/notify.py
