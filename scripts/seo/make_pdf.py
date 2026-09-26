@@ -210,6 +210,13 @@ def build(data, insights, out: Path):
         f'<div class="hbv">{r["impressions"]} <span class="muted">· {r["clicks"]} visits</span></div></div>' for r in pages)
 
     changes = [x for x in (ins.get("changes_made") or []) if x and x.get("page")]
+    if not changes and E("CHANGED_FILES"):
+        # fallback: Claude did not describe its changes, list the updated files in plain words
+        for f in [f for f in E("CHANGED_FILES").split(",") if f.strip()]:
+            name = Path(f).stem.replace("-", " ").replace("_", " ")
+            label = {"index": "Main page settings (index.html)", "robots": "robots.txt (tells Google what to read)",
+                     "sitemap": "Sitemap (list of pages for Google)", "vercel": "Page links setup (vercel.json)"}.get(Path(f).stem.lower(), name[:1].upper() + name[1:])
+            changes.append({"page": label, "change": f"Updated file: {f}", "keywords": []})
     change_block = ""
     if changes:
         rows = "".join(
