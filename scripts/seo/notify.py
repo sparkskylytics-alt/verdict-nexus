@@ -73,12 +73,26 @@ def send_email(subject, text, pdf_path=None):
     print("Email: sent")
 
 
+def load_insights():
+    """Find the insights file even if named slightly differently; tolerate code fences/extra text."""
+    files = sorted(Path("seo-reports").glob("insights*.json"), key=lambda f: f.stat().st_mtime)
+    for f in reversed(files):
+        txt = f.read_text(encoding="utf-8", errors="ignore")
+        a, b = txt.find("{"), txt.rfind("}")
+        if a != -1 and b > a:
+            try:
+                return json.loads(txt[a:b + 1])
+            except Exception as e:
+                print("Insights file not valid JSON:", f, e)
+    print("No insights file found.")
+    return {}
+
+
 def main():
     data, ins = None, {}
     try:
         data = json.loads(Path("seo-reports/data/latest.json").read_text(encoding="utf-8"))
-        p = Path(f"seo-reports/insights-{DATE}.json")
-        ins = json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+        ins = load_insights()
     except Exception as e:
         print("Could not read data:", e)
 
