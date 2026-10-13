@@ -397,6 +397,11 @@ const Contact = () => {
       content: "9, 1st Floor, Western India House, Above Bombay Store, Sir P. M. Road, Fort, Mumbai 400001.",
     },
     {
+      icon: "/Icons/location.png",
+      title: "Gurugram Office",
+      content: "House No. 238/18, Behind Ganga Apartment, Sector-11, Gurugram 122001",
+    },
+    {
       icon: "/Icons/telephone.png",
       title: "Phone Number",
       content: "+91 9310654386  |  +91 9632784891",

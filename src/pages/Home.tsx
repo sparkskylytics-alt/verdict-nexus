@@ -1135,9 +1135,15 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: "/Icons/location.png",
-      title: "Office Address",
+      title: "Greater Noida Office",
       content:
         "S-211, Gayatri Life Suites Greater Noida West, Sector-1, 201302",
+    },
+    {
+      icon: "/Icons/location.png",
+      title: "Gurugram Office",
+      content:
+        "House No. 238/18, Behind Ganga Apartment, Sector-11, Gurugram 122001",
     },
     {
       icon: "/Icons/telephone.png",
