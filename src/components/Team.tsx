@@ -115,6 +115,13 @@ specialty:
     experience: "15 Years",
     image: "/team/santosh.png",
   },
+  {
+    name: "Adv. Devansh Sharma",
+    role: "Family & Criminal Lawyer",
+    specialty: "Devansh handles divorce, child custody, maintenance and domestic violence matters, and defends clients in criminal cases from bail and FIR quashing to trial.",
+    experience: "Years",
+    image: "/team/devansh-sharma.jpeg",
+  },
 ];
 
 const Team = () => {
@@ -170,7 +177,7 @@ const Team = () => {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
           {team.map((member, index) => (
             <div
               key={index}
@@ -188,22 +195,20 @@ const Team = () => {
                 animation: isInView ? `fadeInUp 0.6s ease-out ${0.1 + index * 0.15}s both` : 'none'
               }}
             >
-              <div className="relative  h-56 overflow-hidden">
+              <div className="relative h-64 overflow-hidden">
                 <img
                   src={member.image}
                   alt={member.name}
                   className="
-                    top-0
-                    w-full h-full object-cover
+                    w-full h-full object-cover object-top
                     group-hover:scale-105
                     transition duration-500
                   "
                 />
                 <div className="
-                  absolute inset-0
+                  absolute inset-x-0 bottom-0 h-1/3
                   bg-gradient-to-t
-                  from-black/60
-                  via-black/10
+                  from-black/70
                   to-transparent
                 " />
                 <div className="
@@ -215,9 +220,6 @@ const Team = () => {
                   </h3>
                   <p className="text-[11px] text-white">
                     {member.role}
-                  </p>
-                  <p className="text-[10px] text-white">
-                    {member.specialty}
                   </p>
                 </div>
                 {/* <div className="
@@ -233,6 +235,9 @@ const Team = () => {
                   {member.experience}
                 </div> */}
               </div>
+              <p className="p-4 text-xs leading-relaxed text-[#5C6F7A]">
+                {member.specialty}
+              </p>
             </div>
           ))}
         </div>
