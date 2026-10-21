@@ -86,7 +86,7 @@
 //             <ul className="space-y-3 text-gray-300">
 //               <li>S-211, Gayatri Life Suites, Greater Noida West, Sector-1, 201302</li>
 //               <li>Phone: +919310654386</li>
-//               <li>Email: Advoctekhojshashi@gmail.com</li>
+//               <li>Email: advocatekhojshashi@gmail.com</li>
 //               <li>Hours: Mon-Fri 9:00 AM - 6:00 PM</li>
 //             </ul>
 //           </div>

@@ -96,7 +96,7 @@
 //     {
 //       icon: <Mail className="h-6 w-6" />,
 //       title: "Email",
-//       details: ["Advoctekhojshashi@gmail.com"]
+//       details: ["advocatekhojshashi@gmail.com"]
 //     },
 //     {
 //       icon: <MapPin className="h-6 w-6" />,
@@ -409,7 +409,7 @@ const Contact = () => {
     {
       icon: "/Icons/email.png",
       title: "Email Address",
-      content: "Advoctekhojshashi@gmail.com",
+      content: "advocatekhojshashi@gmail.com",
     },
     {
       icon: "/Icons/working-time.png",

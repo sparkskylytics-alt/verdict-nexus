@@ -122,6 +122,13 @@ specialty:
     experience: "Years",
     image: "/team/devansh-sharma.jpeg",
   },
+  {
+    name: "Adv. Rahul Kumar",
+    role: "Civil Law Expert",
+    specialty: "Enrolled as an Advocate with the Bar Council of Delhi in 2023. Holds an LLM in Human Rights (2020-2022) from Central University of Punjab, Bathinda, and a B.Sc. LLB (2015-2020) from Central University of South Bihar.",
+    experience: "Years",
+    image: "/team/Adv-Rahul-Kumar.jpeg",
+  },
 ];
 
 const Team = () => {
@@ -177,7 +184,7 @@ const Team = () => {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-3xl mx-auto">
           {team.map((member, index) => (
             <div
               key={index}
@@ -195,7 +202,7 @@ const Team = () => {
                 animation: isInView ? `fadeInUp 0.6s ease-out ${0.1 + index * 0.15}s both` : 'none'
               }}
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative aspect-[4/5] overflow-hidden">
                 <img
                   src={member.image}
                   alt={member.name}

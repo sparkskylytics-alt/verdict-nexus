@@ -1153,7 +1153,7 @@ const Contact = () => {
     {
       icon: "/Icons/email.png",
       title: "Email Address",
-      content: "Advoctekhojshashi@gmail.com",
+      content: "advocatekhojshashi@gmail.com",
     },
     {
       icon: "/Icons/working-time.png",
