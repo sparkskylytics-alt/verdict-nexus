@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
 Disallow: /admin
+Disallow: /studio
+Disallow: /orders
+Disallow: /judgment
 Disallow: /EduHome
 
-Sitemap: https://verdictnexus.in/sitemap.xml
+Sitemap: https://www.verdictnexus.in/sitemap.xml

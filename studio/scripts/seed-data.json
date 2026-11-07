@@ -23,15 +23,15 @@
         "sectionId": "contact"
       }
     ],
-    "ctaLabel": "Free Consultation",
-    "footerAbout": "Providing trusted legal counsel with integrity, professionalism, and a commitment to achieving successful outcomes for our clients.",
+    "ctaLabel": "Contact Us",
+    "footerAbout": "Verdict Nexus is a law firm with offices in Greater Noida West, Gurugram and Mumbai, practising in civil, criminal, family, property and corporate law.",
     "footerQuickLinksTitle": "Quick Links",
     "footerPracticeTitle": "Practice Areas",
     "footerPracticeAreas": [
       "Corporate Law",
       "Real Estate",
       "Family Law",
-      "Employment"
+      "Criminal Law"
     ],
     "newsletterTitle": "Newsletter",
     "newsletterText": "Subscribe for legal insights & updates",
@@ -39,8 +39,8 @@
     "copyrightText": "Verdict Nexus",
     "privacyLabel": "Privacy Policy",
     "termsLabel": "Terms of Service",
-    "seoTitle": "Verdict Nexus - Legal Services in India",
-    "seoDescription": "Verdict Nexus offers expert legal services across India. Contact our senior advocates for civil, corporate, and criminal law consultations.",
+    "seoTitle": "Verdict Nexus | Advocates in Greater Noida West, Gurugram & Mumbai",
+    "seoDescription": "Verdict Nexus is a law firm with offices in Greater Noida West (Noida Extension), Gurugram and Mumbai. Advocates practising criminal, family, civil, property and corporate law.",
     "seoKeywords": [
       "law firm",
       "advocate",
@@ -48,14 +48,14 @@
       "Supreme Court",
       "High Court",
       "corporate law",
-      "criminal defense",
+      "criminal law",
       "family law",
       "Verdict Nexus",
       "lawyer in Noida",
       "criminal lawyer in Noida",
-      "best criminal lawyer in Noida",
       "advocate in Noida",
       "Greater Noida West lawyer",
+      "Noida Extension lawyer",
       "family lawyer in Noida",
       "divorce lawyer in Noida",
       "property lawyer in Noida",
@@ -65,20 +65,20 @@
       "criminal lawyer in Gurugram",
       "lawyer in Mumbai",
       "law firm in Delhi NCR",
-      "best advocate in Delhi NCR"
+      "advocate in Delhi NCR"
     ]
   },
   "heroSection": {
-    "headingLine1": "Professional Legal Services",
-    "headingLine2": "You Can Trust",
-    "description": "We provide expert legal counsel for individuals and businesses, offering reliable guidance, strategic solutions, and strong representation. Our commitment is to protect your interests, resolve complex matters efficiently, and deliver results you can trust.",
+    "headingLine1": "Advocates in Greater Noida West,",
+    "headingLine2": "Gurugram & Mumbai",
+    "description": "Verdict Nexus is a law firm with offices in Greater Noida West (Noida Extension), Gurugram and Mumbai. Our advocates appear in civil, criminal, family, property and corporate matters before courts and tribunals across Delhi NCR and beyond.",
     "image": "https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    "badgeTitle": "Award Winning",
-    "badgeSubtitle": "Legal Excellence"
+    "badgeTitle": "Offices in",
+    "badgeSubtitle": "Delhi NCR & Mumbai"
   },
   "clientsSection": {
-    "title": "Trusted By Industry Leaders",
-    "subtitle": "Partnerships built on trust & long-term success",
+    "title": "Our Clients",
+    "subtitle": "Organisations we have worked with",
     "clients": [
       {
         "name": "Medipol",
@@ -146,7 +146,7 @@
   },
   "teamSection": {
     "title": "Our Legal Team",
-    "subtitle": "Dedicated professionals delivering trusted legal excellence",
+    "subtitle": "Advocates and legal professionals at Verdict Nexus",
     "members": [
       {
         "name": "Shashi Kant Upadhyay",
@@ -163,7 +163,7 @@
       {
         "name": "Akbar Khan",
         "role": "Criminal Defense Attorney",
-        "bio": "Akbar leads our criminal defense practice with a proven record of successful case outcomes.",
+        "bio": "Akbar practises in criminal law and appears in matters at different court levels.",
         "photo": "/team/aman.jpeg"
       },
       {
@@ -196,7 +196,7 @@
       },
       {
         "question": "How do I know if I need a lawyer?",
-        "answer": "You may need a lawyer if you're facing legal issues such as property disputes, family matters, criminal charges, business-related legal challenges, or need legal documentation. We offer free initial consultations to help you determine if you need legal representation."
+        "answer": "You may need a lawyer if you're facing legal issues such as property disputes, family matters, criminal charges, business-related legal challenges, or need legal documentation. An advocate can explain your legal position and the options available."
       },
       {
         "question": "What should I bring to my first meeting with a lawyer?",
@@ -218,9 +218,9 @@
   },
   "contactSection": {
     "title": "Contact Us",
-    "subtitle": "Schedule a consultation or send us a message",
-    "formTitle": "Free Case Evaluation",
-    "successMessage": "Thank you! We'll respond within 24 hours.",
+    "subtitle": "Send us a message or visit one of our offices",
+    "formTitle": "Send an Enquiry",
+    "successMessage": "Thank you. We have received your message.",
     "items": [
       {
         "title": "Greater Noida Office",
@@ -265,7 +265,7 @@
       "ITR Services",
       "Other"
     ],
-    "submitLabel": "Submit Request"
+    "submitLabel": "Send Message"
   },
   "disclaimerSection": {
     "title": "Disclaimer",

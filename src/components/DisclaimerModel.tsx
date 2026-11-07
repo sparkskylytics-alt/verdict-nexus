@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSiteContent } from "../content/SiteContent";
 
 interface DisclaimerModalProps {
@@ -8,6 +8,14 @@ interface DisclaimerModalProps {
 export default function DisclaimerModal({ onAccept }: DisclaimerModalProps) {
   const { disclaimerSection: d } = useSiteContent();
   const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, []);
 
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-[9999]">

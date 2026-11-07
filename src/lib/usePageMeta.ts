@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const SITE_URL = "https://verdictnexus.in";
+const SITE_URL = "https://www.verdictnexus.in";
 
 type Meta = {
   title: string;

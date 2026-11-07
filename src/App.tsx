@@ -65,8 +65,8 @@ import EduHome from "./pages/EduHome";
 
 const PAGE_META: Record<string, { title: string; description: string; noindex?: boolean; canonicalPath?: string }> = {
   "/": {
-    title: "Verdict Nexus - Legal Services in India",
-    description: "Verdict Nexus offers expert legal services across India. Contact our senior advocates for civil, corporate, and criminal law consultations.",
+    title: "Verdict Nexus | Advocates in Greater Noida West, Gurugram & Mumbai",
+    description: "Verdict Nexus is a law firm with offices in Greater Noida West (Noida Extension), Gurugram and Mumbai. Advocates practising criminal, family, civil, property and corporate law.",
   },
   "/orders": {
     title: "Court Orders Search | Verdict Nexus",
@@ -118,7 +118,7 @@ function App() {
         <Route
           path="/"
           element={
-            accepted ? (
+            (
               <div className="min-h-screen">
                 <Navbar scrolled={scrolled} />
                 <Hero />
@@ -130,7 +130,7 @@ function App() {
                 <Contact />
                 <Footer />
               </div>
-            ) : null
+            )
           }
         />
         
