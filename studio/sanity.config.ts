@@ -11,6 +11,7 @@ export default defineConfig({
   title: 'Verdict Nexus',
   projectId: 'urj7gol0',
   dataset: 'production',
+  basePath: '/studio',
   plugins: [
     structureTool({
       structure: (S) =>
