@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useSiteContent } from "../content/SiteContent";
 
 interface DisclaimerModalProps {
   onAccept: () => void;
 }
 
 export default function DisclaimerModal({ onAccept }: DisclaimerModalProps) {
+  const { disclaimerSection: d } = useSiteContent();
   const [checked, setChecked] = useState(false);
 
   return (
@@ -13,18 +15,12 @@ export default function DisclaimerModal({ onAccept }: DisclaimerModalProps) {
 
         {/* Title */}
         <h2 className="text-lg md:text-2xl font-semibold mb-4 text-blue-600 text-center">
-          Disclaimer
+          {d.title}
         </h2>
 
         {/* Text */}
         <p className="text-gray-700 text-sm md:text-base leading-relaxed mb-6">
-          The Bar Council of India does not permit advertisement or solicitation by advocates in any form or manner.
-          By accessing this website, you acknowledge and confirm that you are seeking information relating to Verdict Nexus
-          of your own accord and that there has been no form of solicitation, advertisement or inducement by Verdict Nexus
-          or its members. The content of this website is for informational purposes only and should not be interpreted
-          as soliciting or advertisement. No material/information provided on this website should be construed as legal
-          advice. Verdict Nexus shall not be liable for consequences of any action taken by relying on the material/
-          information provided on this website The contents of this website are the intellectual property of Verdict Nexus.
+          {d.text}
         </p>
 
         {/* Checkbox */}
@@ -35,7 +31,7 @@ export default function DisclaimerModal({ onAccept }: DisclaimerModalProps) {
             onChange={() => setChecked(!checked)} 
             className="w-4 h-4"
           />
-          <span>I accept the above.</span>
+          <span>{d.checkboxLabel}</span>
         </label>
 
         {/* Button */}
@@ -46,7 +42,7 @@ export default function DisclaimerModal({ onAccept }: DisclaimerModalProps) {
             checked ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-300 cursor-not-allowed"
           }`}
         >
-          PROCEED TO WEBSITE
+          {d.buttonLabel}
         </button>
 
       </div>

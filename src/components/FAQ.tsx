@@ -95,36 +95,12 @@
 // export default FAQ;
 import { useState } from 'react';
 import { useInView } from '../hooks/useInView';
-import type { FAQ as FAQType } from '../types/index'; // Rename the type import
+import { useSiteContent } from '../content/SiteContent';
 
-const faqs: FAQType[] = [  // Use the renamed type
-  {
-    question: "What areas of law does your firm specialize in?",
-    answer: "Our firm specializes in various areas including civil litigation, family law, corporate law, real estate, criminal defense, intellectual property, constitutional law, and legal documentation. Our team of advocates has extensive experience in these practice areas across Indian courts."
-  },
-  {
-    question: "How do I know if I need a lawyer?",
-    answer: "You may need a lawyer if you're facing legal issues such as property disputes, family matters, criminal charges, business-related legal challenges, or need legal documentation. We offer free initial consultations to help you determine if you need legal representation."
-  },
-  {
-    question: "What should I bring to my first meeting with a lawyer?",
-    answer: "For your first meeting, bring any documents related to your case such as contracts, correspondence, court papers, police reports, medical records (if relevant), and a written timeline of events. This helps us understand your situation thoroughly and provide effective legal advice."
-  },
-  {
-    question: "How much will my case cost?",
-    answer: "Legal costs vary depending on the complexity of your case, the time required, and the nature of legal services needed. During our initial consultation, we'll discuss fee structures, which may include hourly rates, flat fees for specific services, or contingency arrangements in certain cases. We strive to provide transparent billing and payment options."
-  },
-  {
-    question: "How long will my case take to resolve?",
-    answer: "The duration varies significantly based on the type of case, its complexity, the court's schedule, and whether settlement is possible. Some matters can be resolved in weeks, while others may take months or even years. We'll provide a realistic timeline estimate based on your specific situation during consultation."
-  },
-  {
-    question: "Can I represent myself instead of hiring a lawyer?",
-    answer: "While self-representation (appearing 'in-person') is permitted in Indian courts, it's generally not recommended for complex matters. The legal system involves intricate procedures, substantive law knowledge, and courtroom protocols that legal professionals are trained to navigate. A qualified advocate can significantly improve your chances of a favorable outcome."
-  }
-];
 
 const FAQ = () => {
+  const { faqSection } = useSiteContent();
+  const faqs = faqSection.faqs;
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [ref, isInView] = useInView();
 
@@ -204,10 +180,10 @@ const FAQ = () => {
             }}
           ></div>
           <h2 className="text-xl md:text-2xl font-semibold text-[#2F3336]">
-            Frequently Asked Questions
+            {faqSection.title}
           </h2>
           <p className="text-[#5C6F7A] text-sm mt-2">
-            Answers to common legal inquiries
+            {faqSection.subtitle}
           </p>
         </div>
 

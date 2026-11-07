@@ -1,0 +1,276 @@
+{
+  "siteSettings": {
+    "siteName": "Verdict Nexus",
+    "navbarLogo": "/Images/nav-logo.png",
+    "footerLogo": "/Images/logo.png",
+    "favicon": "/Images/logo.png",
+    "shareImage": "/Images/logo.png",
+    "navItems": [
+      {
+        "label": "Home",
+        "sectionId": "home"
+      },
+      {
+        "label": "Services",
+        "sectionId": "practice-areas"
+      },
+      {
+        "label": "Team",
+        "sectionId": "team"
+      },
+      {
+        "label": "Contact",
+        "sectionId": "contact"
+      }
+    ],
+    "ctaLabel": "Free Consultation",
+    "footerAbout": "Providing trusted legal counsel with integrity, professionalism, and a commitment to achieving successful outcomes for our clients.",
+    "footerQuickLinksTitle": "Quick Links",
+    "footerPracticeTitle": "Practice Areas",
+    "footerPracticeAreas": [
+      "Corporate Law",
+      "Real Estate",
+      "Family Law",
+      "Employment"
+    ],
+    "newsletterTitle": "Newsletter",
+    "newsletterText": "Subscribe for legal insights & updates",
+    "newsletterPlaceholder": "Your email",
+    "copyrightText": "Verdict Nexus",
+    "privacyLabel": "Privacy Policy",
+    "termsLabel": "Terms of Service",
+    "seoTitle": "Verdict Nexus - Legal Services in India",
+    "seoDescription": "Verdict Nexus offers expert legal services across India. Contact our senior advocates for civil, corporate, and criminal law consultations.",
+    "seoKeywords": [
+      "law firm",
+      "advocate",
+      "legal services",
+      "Supreme Court",
+      "High Court",
+      "corporate law",
+      "criminal defense",
+      "family law",
+      "Verdict Nexus",
+      "lawyer in Noida",
+      "criminal lawyer in Noida",
+      "best criminal lawyer in Noida",
+      "advocate in Noida",
+      "Greater Noida West lawyer",
+      "family lawyer in Noida",
+      "divorce lawyer in Noida",
+      "property lawyer in Noida",
+      "civil lawyer in Noida",
+      "bail lawyer in Noida",
+      "lawyer in Gurugram",
+      "criminal lawyer in Gurugram",
+      "lawyer in Mumbai",
+      "law firm in Delhi NCR",
+      "best advocate in Delhi NCR"
+    ]
+  },
+  "heroSection": {
+    "headingLine1": "Professional Legal Services",
+    "headingLine2": "You Can Trust",
+    "description": "We provide expert legal counsel for individuals and businesses, offering reliable guidance, strategic solutions, and strong representation. Our commitment is to protect your interests, resolve complex matters efficiently, and deliver results you can trust.",
+    "image": "https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "badgeTitle": "Award Winning",
+    "badgeSubtitle": "Legal Excellence"
+  },
+  "clientsSection": {
+    "title": "Trusted By Industry Leaders",
+    "subtitle": "Partnerships built on trust & long-term success",
+    "clients": [
+      {
+        "name": "Medipol",
+        "logo": "/Images/Clients/medipol.png"
+      },
+      {
+        "name": "Panhr",
+        "logo": "/Images/Clients/panhr.png"
+      },
+      {
+        "name": "Moat Electronics",
+        "logo": "/Images/Clients/moat_electronics.jpg"
+      }
+    ]
+  },
+  "practiceAreasSection": {
+    "title": "Practice Areas",
+    "areas": [
+      {
+        "title": "Corporate Law",
+        "description": "Legal advice on company formation, compliance, mergers, acquisitions, and corporate governance.",
+        "icon": "/Icons/regulation.png"
+      },
+      {
+        "title": "Real Estate",
+        "description": "Legal services for property transactions, tenant disputes, and construction-related matters.",
+        "icon": "/Icons/urban.png"
+      },
+      {
+        "title": "Family Law",
+        "description": "Assistance with divorce, child custody, maintenance, adoption, and domestic relations matters.",
+        "icon": "/Icons/family-law.png"
+      },
+      {
+        "title": "Civil Litigation",
+        "description": "Representation in civil disputes including property matters and recovery suits.",
+        "icon": "/Icons/civil-rights.png"
+      },
+      {
+        "title": "Criminal Defense",
+        "description": "Defense representation in criminal proceedings at all court levels.",
+        "icon": "/Icons/justice.png"
+      },
+      {
+        "title": "Intellectual Property",
+        "description": "Protection of trademarks, copyrights, patents, and trade secrets.",
+        "icon": "/Icons/court.png"
+      },
+      {
+        "title": "Constitutional Law",
+        "description": "Matters involving fundamental rights and constitutional remedies.",
+        "icon": "/Icons/law-book.png"
+      },
+      {
+        "title": "ITR Services",
+        "description": "Income tax filing, tax planning, and compliance services.",
+        "icon": "/Icons/monitor.png"
+      },
+      {
+        "title": "Documentation",
+        "description": "Drafting agreements, wills, legal notices, and power of attorney.",
+        "icon": "/Icons/documentation.png"
+      }
+    ]
+  },
+  "teamSection": {
+    "title": "Our Legal Team",
+    "subtitle": "Dedicated professionals delivering trusted legal excellence",
+    "members": [
+      {
+        "name": "Shashi Kant Upadhyay",
+        "role": "Advocate",
+        "bio": "Experienced in civil litigation, Shashi has represented clients before the Supreme Court of India and various High Courts.",
+        "photo": "/team/sachin-bhaiya.jpeg"
+      },
+      {
+        "name": "MD Amaan",
+        "role": "Corporate Law Specialist",
+        "bio": "Amaan specializes in mergers and acquisitions, negotiating complex corporate transactions for Indian and international clients.",
+        "photo": "/team/akbar.jpeg"
+      },
+      {
+        "name": "Akbar Khan",
+        "role": "Criminal Defense Attorney",
+        "bio": "Akbar leads our criminal defense practice with a proven record of successful case outcomes.",
+        "photo": "/team/aman.jpeg"
+      },
+      {
+        "name": "Santosh Kumar",
+        "role": "Family Law Expert",
+        "bio": "Sathosh is known for her compassionate approach to family law, guiding clients through divorce, custody, and domestic relations cases.",
+        "photo": "/team/santosh.png"
+      },
+      {
+        "name": "Adv. Devansh Sharma",
+        "role": "Family & Criminal Lawyer",
+        "bio": "Devansh handles divorce, child custody, maintenance and domestic violence matters, and defends clients in criminal cases from bail and FIR quashing to trial.",
+        "photo": "/team/devansh-sharma.jpeg"
+      },
+      {
+        "name": "Adv. Rahul Kumar",
+        "role": "Civil Law Expert",
+        "bio": "Enrolled as an Advocate with the Bar Council of Delhi in 2023. Holds an LLM in Human Rights (2020-2022) from Central University of Punjab, Bathinda, and a B.Sc. LLB (2015-2020) from Central University of South Bihar.",
+        "photo": "/team/Adv-Rahul-Kumar.jpeg"
+      }
+    ]
+  },
+  "faqSection": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to common legal inquiries",
+    "faqs": [
+      {
+        "question": "What areas of law does your firm specialize in?",
+        "answer": "Our firm specializes in various areas including civil litigation, family law, corporate law, real estate, criminal defense, intellectual property, constitutional law, and legal documentation. Our team of advocates has extensive experience in these practice areas across Indian courts."
+      },
+      {
+        "question": "How do I know if I need a lawyer?",
+        "answer": "You may need a lawyer if you're facing legal issues such as property disputes, family matters, criminal charges, business-related legal challenges, or need legal documentation. We offer free initial consultations to help you determine if you need legal representation."
+      },
+      {
+        "question": "What should I bring to my first meeting with a lawyer?",
+        "answer": "For your first meeting, bring any documents related to your case such as contracts, correspondence, court papers, police reports, medical records (if relevant), and a written timeline of events. This helps us understand your situation thoroughly and provide effective legal advice."
+      },
+      {
+        "question": "How much will my case cost?",
+        "answer": "Legal costs vary depending on the complexity of your case, the time required, and the nature of legal services needed. During our initial consultation, we'll discuss fee structures, which may include hourly rates, flat fees for specific services, or contingency arrangements in certain cases. We strive to provide transparent billing and payment options."
+      },
+      {
+        "question": "How long will my case take to resolve?",
+        "answer": "The duration varies significantly based on the type of case, its complexity, the court's schedule, and whether settlement is possible. Some matters can be resolved in weeks, while others may take months or even years. We'll provide a realistic timeline estimate based on your specific situation during consultation."
+      },
+      {
+        "question": "Can I represent myself instead of hiring a lawyer?",
+        "answer": "While self-representation (appearing 'in-person') is permitted in Indian courts, it's generally not recommended for complex matters. The legal system involves intricate procedures, substantive law knowledge, and courtroom protocols that legal professionals are trained to navigate. A qualified advocate can significantly improve your chances of a favorable outcome."
+      }
+    ]
+  },
+  "contactSection": {
+    "title": "Contact Us",
+    "subtitle": "Schedule a consultation or send us a message",
+    "formTitle": "Free Case Evaluation",
+    "successMessage": "Thank you! We'll respond within 24 hours.",
+    "items": [
+      {
+        "title": "Greater Noida Office",
+        "content": "S-211, Gayatri Life Suites, Greater Noida West, Sector-1, 201302",
+        "icon": "/Icons/location.png"
+      },
+      {
+        "title": "Mumbai Office",
+        "content": "9, 1st Floor, Western India House, Above Bombay Store, Sir P. M. Road, Fort, Mumbai 400001.",
+        "icon": "/Icons/location.png"
+      },
+      {
+        "title": "Gurugram Office",
+        "content": "House No. 238/18, Behind Ganga Apartment, Sector-11, Gurugram 122001",
+        "icon": "/Icons/location.png"
+      },
+      {
+        "title": "Phone Number",
+        "content": "+91 9310654386  |  +91 9632784891",
+        "icon": "/Icons/telephone.png"
+      },
+      {
+        "title": "Email Address",
+        "content": "advocatekhojshashi@gmail.com",
+        "icon": "/Icons/email.png"
+      },
+      {
+        "title": "Business Hours",
+        "content": "Mon-Fri: 9AM-6PM | Sat: 10AM-2PM",
+        "icon": "/Icons/working-time.png"
+      }
+    ],
+    "caseTypes": [
+      "Civil Litigation",
+      "Family Law",
+      "Corporate Law",
+      "Real Estate",
+      "Criminal Defense",
+      "Intellectual Property",
+      "Constitutional Law",
+      "Documentation",
+      "ITR Services",
+      "Other"
+    ],
+    "submitLabel": "Submit Request"
+  },
+  "disclaimerSection": {
+    "title": "Disclaimer",
+    "text": "The Bar Council of India does not permit advertisement or solicitation by advocates in any form or manner. By accessing this website, you acknowledge and confirm that you are seeking information relating to Verdict Nexus of your own accord and that there has been no form of solicitation, advertisement or inducement by Verdict Nexus or its members. The content of this website is for informational purposes only and should not be interpreted as soliciting or advertisement. No material/information provided on this website should be construed as legal advice. Verdict Nexus shall not be liable for consequences of any action taken by relying on the material/ information provided on this website The contents of this website are the intellectual property of Verdict Nexus.",
+    "checkboxLabel": "I accept the above.",
+    "buttonLabel": "PROCEED TO WEBSITE"
+  }
+}

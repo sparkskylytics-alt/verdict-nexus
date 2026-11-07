@@ -84,54 +84,12 @@
 // export default Team;
 
 import { useInView } from '../hooks/useInView';
-import { TeamMember } from '../types';
+import { useSiteContent } from '../content/SiteContent';
 
-const team: TeamMember[] = [
-  {
-    name: "Shashi Kant Upadhyay",
-    role: "Advocate",
-specialty:
-  "Experienced in civil litigation, Shashi has represented clients before the Supreme Court of India and various High Courts.",    experience: "Years",
-    image: "/team/sachin-bhaiya.jpeg",
-  },
-  {
-    name: "MD Amaan",
-    role: "Corporate Law Specialist",
-    specialty: "Amaan specializes in mergers and acquisitions, negotiating complex corporate transactions for Indian and international clients.",
-    experience: "18 Years",
-    image: "/team/akbar.jpeg",
-  },
-  {
-    name: "Akbar Khan",
-    role: "Criminal Defense Attorney",
-    specialty: "Akbar leads our criminal defense practice with a proven record of successful case outcomes.",
-    experience: "22 Years",
-    image: "/team/aman.jpeg",
-  },
-  {
-    name: "Santosh Kumar",
-    role: "Family Law Expert",
-    specialty: "Sathosh is known for her compassionate approach to family law, guiding clients through divorce, custody, and domestic relations cases.",
-    experience: "15 Years",
-    image: "/team/santosh.png",
-  },
-  {
-    name: "Adv. Devansh Sharma",
-    role: "Family & Criminal Lawyer",
-    specialty: "Devansh handles divorce, child custody, maintenance and domestic violence matters, and defends clients in criminal cases from bail and FIR quashing to trial.",
-    experience: "Years",
-    image: "/team/devansh-sharma.jpeg",
-  },
-  {
-    name: "Adv. Rahul Kumar",
-    role: "Civil Law Expert",
-    specialty: "Enrolled as an Advocate with the Bar Council of Delhi in 2023. Holds an LLM in Human Rights (2020-2022) from Central University of Punjab, Bathinda, and a B.Sc. LLB (2015-2020) from Central University of South Bihar.",
-    experience: "Years",
-    image: "/team/Adv-Rahul-Kumar.jpeg",
-  },
-];
 
 const Team = () => {
+  const { teamSection } = useSiteContent();
+  const team = teamSection.members;
   const [ref, isInView] = useInView();
 
   return (
@@ -177,10 +135,10 @@ const Team = () => {
       <div className="relative container mx-auto px-4">
         <div className="text-center mb-10">
           <h2 className="text-xl md:text-2xl font-semibold text-[#2F3336]">
-            Our Legal Team
+            {teamSection.title}
           </h2>
           <p className="text-[#5C6F7A] text-xs mt-2">
-            Dedicated professionals delivering trusted legal excellence
+            {teamSection.subtitle}
           </p>
         </div>
 
@@ -204,7 +162,7 @@ const Team = () => {
             >
               <div className="relative aspect-[4/5] overflow-hidden">
                 <img
-                  src={member.image}
+                  src={member.photo}
                   alt={member.name}
                   className="
                     w-full h-full object-cover object-top
@@ -243,7 +201,7 @@ const Team = () => {
                 </div> */}
               </div>
               <p className="p-4 text-xs leading-relaxed text-[#5C6F7A]">
-                {member.specialty}
+                {member.bio}
               </p>
             </div>
           ))}

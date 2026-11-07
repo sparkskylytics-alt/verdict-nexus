@@ -102,65 +102,19 @@
 
 // export default PracticeAreas;
 
-import { PracticeArea } from '../types';
+import { useSiteContent } from '../content/SiteContent';
 
-const areas: PracticeArea[] = [
-  {
-    title: "Corporate Law",
-    description: "Legal advice on company formation, compliance, mergers, acquisitions, and corporate governance.",
-    icon: "/Icons/regulation.png",
-  },
-  {
-    title: "Real Estate",
-    description: "Legal services for property transactions, tenant disputes, and construction-related matters.",
-    icon: "/Icons/urban.png",
-  },
-  {
-    title: "Family Law",
-    description: "Assistance with divorce, child custody, maintenance, adoption, and domestic relations matters.",
-    icon: "/Icons/family-law.png",
-  },
-  {
-    title: "Civil Litigation",
-    description: "Representation in civil disputes including property matters and recovery suits.",
-    icon: "/Icons/civil-rights.png",
-  },
-  {
-    title: "Criminal Defense",
-    description: "Defense representation in criminal proceedings at all court levels.",
-    icon: "/Icons/justice.png",
-  },
-  {
-    title: "Intellectual Property",
-    description: "Protection of trademarks, copyrights, patents, and trade secrets.",
-    icon: "/Icons/court.png",
-  },
-  {
-    title: "Constitutional Law",
-    description: "Matters involving fundamental rights and constitutional remedies.",
-    icon: "/Icons/law-book.png",
-  },
- 
-  {
-    title: "ITR Services",
-    description: "Income tax filing, tax planning, and compliance services.",
-    icon: "/Icons/monitor.png",
-  },
- {
-    title: "Documentation",
-    description: "Drafting agreements, wills, legal notices, and power of attorney.",
-    icon: "/Icons/documentation.png",
-  },
-];
 
 const PracticeAreas = () => {
+  const { practiceAreasSection } = useSiteContent();
+  const { areas } = practiceAreasSection;
   return (
     <section  id="practice-areas" className="relative py-10 font-montserrat overflow-hidden">
       <div className="absolute inset-0 bg-[#2F3336]" />
       <div className="relative container mx-auto px-4">
         <div className="text-center mb-8">
           <h2 className="text-xl md:text-2xl font-semibold text-white">
-            Practice Areas
+            {practiceAreasSection.title}
           </h2>
           <div
             className="

@@ -9,7 +9,7 @@
 //         <div 
 //           className="absolute inset-0 bg-cover bg-center"
 //           style={{ 
-//             backgroundImage: "url('https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
+//             backgroundImage: `url('${hero.image}')`,
 //             backgroundBlendMode: "overlay",
 //             opacity: 0.6
 //           }}
@@ -69,8 +69,10 @@
 // export default Hero;
 
 import { useInView } from '../hooks/useInView';
+import { useSiteContent } from '../content/SiteContent';
 
 const Hero = () => {
+  const { heroSection: hero } = useSiteContent();
   const [ref, isInView] = useInView();
 
   return (
@@ -149,9 +151,9 @@ const Hero = () => {
                 animation: isInView ? 'fadeInUp 0.8s ease-out 0.3s both' : 'none'
               }}
             >
-              Professional Legal Services
+              {hero.headingLine1}
               <br />
-              You Can Trust
+              {hero.headingLine2}
             </h1>
             <p
               className="text-gray-300 text-base mb-8 max-w-xl"
@@ -159,7 +161,7 @@ const Hero = () => {
                 animation: isInView ? 'fadeInUp 0.8s ease-out 0.4s both' : 'none'
               }}
             >
-            We provide expert legal counsel for individuals and businesses, offering reliable guidance, strategic solutions, and strong representation. Our commitment is to protect your interests, resolve complex matters efficiently, and deliver results you can trust.
+            {hero.description}
             </p>
             <div
               className="flex flex-col sm:flex-row gap-4"
@@ -203,10 +205,10 @@ const Hero = () => {
               }}
             >
               <div className="font-bold text-sm">
-                Award Winning
+                {hero.badgeTitle}
               </div>
               <div className="text-xs">
-                Legal Excellence
+                {hero.badgeSubtitle}
               </div>
             </div>
           </div>

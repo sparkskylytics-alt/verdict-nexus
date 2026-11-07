@@ -162,10 +162,12 @@
 
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import logo from '../../src/Images/image.png';
 import { NavbarProps } from '../types';
+import { useSiteContent } from '../content/SiteContent';
 
 const Navbar = ({ scrolled }: NavbarProps) => {
+  const { siteSettings } = useSiteContent();
+  const logo = siteSettings.navbarLogo;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -242,14 +244,11 @@ const Navbar = ({ scrolled }: NavbarProps) => {
   };
 
   // Navigation items
-  const navItems = [
-    { name: "Home", path: "/", sectionId: "home" },
-    { name: "Services", path: "/", sectionId: "practice-areas" },
-    { name: "Team", path: "/", sectionId: "team" },
-    { name: "Orders", path: "/orders" },
-    { name: "Judgment", path: "/judgment" },
-    { name: "Contact", path: "/", sectionId: "contact" }
-  ];
+  const navItems = siteSettings.navItems.map((i) => ({
+    name: i.label,
+    path: "/",
+    sectionId: i.sectionId,
+  }));
 
   return (
     <nav
@@ -311,12 +310,12 @@ const Navbar = ({ scrolled }: NavbarProps) => {
             <div className="w-10 h-10 rounded flex items-center justify-center overflow-hidden">
               <img
                 src={logo}
-                alt="Law Firm Logo"
+                alt={`${siteSettings.siteName} Logo`}
                 className="h-6 w-6 object-contain transition duration-300"
               />
             </div>
             <span className="text-xl font-semibold text-[#E8E2D6] tracking-wide">
-              Verdict Nexus
+              {siteSettings.siteName}
             </span>
           </button>
 
@@ -360,7 +359,7 @@ const Navbar = ({ scrolled }: NavbarProps) => {
                 animation: 'fadeIn 0.6s ease-out 0.4s both'
               }}
             >
-              Free Consultation
+              {siteSettings.ctaLabel}
             </button>
           </div>
 
@@ -423,7 +422,7 @@ const Navbar = ({ scrolled }: NavbarProps) => {
               px-5 py-2 rounded w-full text-sm shadow-md
               hover:scale-[1.02] transition-transform"
             >
-              Free Consultation
+              {siteSettings.ctaLabel}
             </button>
           </div>
         )}

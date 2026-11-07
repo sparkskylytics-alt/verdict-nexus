@@ -7,4 +7,14 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  server: {
+    proxy: {
+      // Same-origin proxy to the Sanity API (avoids CORS setup)
+      '/sanity-api': {
+        target: 'https://urj7gol0.apicdn.sanity.io',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/sanity-api/, ''),
+      },
+    },
+  },
 });

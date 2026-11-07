@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/sanity-api/:path*", "destination": "https://urj7gol0.apicdn.sanity.io/:path*" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

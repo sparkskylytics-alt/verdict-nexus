@@ -117,8 +117,10 @@
 
 // export default Footer;
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useSiteContent } from '../content/SiteContent';
 
 const Footer = () => {
+  const { siteSettings: ss } = useSiteContent();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -204,17 +206,17 @@ const Footer = () => {
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 flex items-center justify-center">
                 <img 
-                  src="/Images/logo.png" 
-                  alt="Verdict Nexus Logo" 
+                  src={ss.footerLogo} 
+                  alt={`${ss.siteName} Logo`} 
                   className="w-full h-full object-contain"
                 />
               </div>
               <span className="text-lg font-semibold">
-                Verdict Nexus
+                {ss.siteName}
               </span>
             </div>
             <p className="text-[#CFC7B8] text-sm leading-relaxed">
-              Providing trusted legal counsel with integrity, professionalism, and a commitment to achieving successful outcomes for our clients.
+              {ss.footerAbout}
             </p>
           </div>
 
@@ -225,77 +227,29 @@ const Footer = () => {
             }}
           >
             <h3 className="font-semibold mb-4 text-sm">
-              Quick Links
+              {ss.footerQuickLinksTitle}
             </h3>
             <ul className="space-y-2 text-sm">
-              <li
-                style={{
-                  animation: `fadeInRight 0.4s ease-out ${0.2}s both`
-                }}
-              >
-                <button
-                  onClick={() => handleNavigation('/', 'home')}
-                  className="
-                    text-[#CFC7B8]
-                    hover:text-white
-                    transition-all duration-300
-                    hover:pl-2 block w-full text-left
-                  "
+              {ss.navItems.map((item, index) => (
+                <li
+                  key={item.label}
+                  style={{
+                    animation: `fadeInRight 0.4s ease-out ${0.2 + index * 0.1}s both`
+                  }}
                 >
-                  Home
-                </button>
-              </li>
-              <li
-                style={{
-                  animation: `fadeInRight 0.4s ease-out ${0.3}s both`
-                }}
-              >
-                <button
-                  onClick={() => handleNavigation('/', 'practice-areas')}
-                  className="
-                    text-[#CFC7B8]
-                    hover:text-white
-                    transition-all duration-300
-                    hover:pl-2 block w-full text-left
-                  "
-                >
-                  Services
-                </button>
-              </li>
-              <li
-                style={{
-                  animation: `fadeInRight 0.4s ease-out ${0.4}s both`
-                }}
-              >
-                <button
-                  onClick={() => handleNavigation('/', 'team')}
-                  className="
-                    text-[#CFC7B8]
-                    hover:text-white
-                    transition-all duration-300
-                    hover:pl-2 block w-full text-left
-                  "
-                >
-                  Team
-                </button>
-              </li>
-              <li
-                style={{
-                  animation: `fadeInRight 0.4s ease-out ${0.5}s both`
-                }}
-              >
-                <button
-                  onClick={() => handleNavigation('/', 'contact')}
-                  className="
-                    text-[#CFC7B8]
-                    hover:text-white
-                    transition-all duration-300
-                    hover:pl-2 block w-full text-left
-                  "
-                >
-                  Contact
-                </button>
-              </li>
+                  <button
+                    onClick={() => handleNavigation('/', item.sectionId)}
+                    className="
+                      text-[#CFC7B8]
+                      hover:text-white
+                      transition-all duration-300
+                      hover:pl-2 block w-full text-left
+                    "
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -306,10 +260,10 @@ const Footer = () => {
             }}
           >
             <h3 className="font-semibold mb-4 text-sm">
-              Practice Areas
+              {ss.footerPracticeTitle}
             </h3>
             <ul className="space-y-2 text-sm">
-              {["Corporate Law", "Real Estate", "Family Law", "Employment"].map((area, index) => (
+              {ss.footerPracticeAreas.map((area, index) => (
                 <li
                   key={area}
                   style={{
@@ -348,10 +302,10 @@ const Footer = () => {
             }}
           >
             <h3 className="font-semibold mb-4 text-sm">
-              Newsletter
+              {ss.newsletterTitle}
             </h3>
             <p className="text-[#CFC7B8] text-sm mb-4">
-              Subscribe for legal insights & updates
+              {ss.newsletterText}
             </p>
             <div
               className="flex"
@@ -361,7 +315,7 @@ const Footer = () => {
             >
               <input
                 type="email"
-                placeholder="Your email"
+                placeholder={ss.newsletterPlaceholder}
                 className="
                   flex-grow
                   p-3
@@ -407,20 +361,20 @@ const Footer = () => {
           }}
         >
           <p>
-            © {new Date().getFullYear()} Verdict Nexus. All rights reserved.
+            © {new Date().getFullYear()} {ss.copyrightText}. All rights reserved.
           </p>
           <div className="flex gap-4">
             <button 
               onClick={() => handleNavigation('/', 'privacy')}
               className="hover:text-white transition hover:scale-105"
             >
-              Privacy Policy
+              {ss.privacyLabel}
             </button>
             <button 
               onClick={() => handleNavigation('/', 'terms')}
               className="hover:text-white transition hover:scale-105"
             >
-              Terms of Service
+              {ss.termsLabel}
             </button>
           </div>
         </div>

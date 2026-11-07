@@ -56,19 +56,16 @@
 // export default OurClients;
 
 import { useInView } from '../hooks/useInView';
-import { Client } from '../types';
+import { useSiteContent } from '../content/SiteContent';
 import { useEffect, useRef, useState } from 'react';
 
-const clients: Client[] = [
-  { name: "Medipol", logo: "/Images/Clients/medipol.png" },
-  { name: "Panhr", logo: "/Images/Clients/panhr.png" },
-  { name: "Moat Electronics", logo: "/Images/Clients/moat_electronics.jpg" },
-];
 
 // Duplicate clients multiple times for seamless infinite scroll with just 3 clients
-const duplicatedClients = [...clients, ...clients, ...clients, ...clients];
 
 const OurClients = () => {
+  const { clientsSection } = useSiteContent();
+  const { clients } = clientsSection;
+  const duplicatedClients = [...clients, ...clients, ...clients, ...clients];
   const [ref, isInView] = useInView();
   const [isPaused, setIsPaused] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -184,7 +181,7 @@ const OurClients = () => {
                 : "none",
             }}
           >
-            Trusted By Industry Leaders
+            {clientsSection.title}
           </h2>
           <p
             className="text-[#5C6F7A] text-sm mt-2"
@@ -194,7 +191,7 @@ const OurClients = () => {
                 : "none",
             }}
           >
-            Partnerships built on trust & long-term success
+            {clientsSection.subtitle}
           </p>
         </div>
 

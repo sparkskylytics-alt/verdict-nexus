@@ -31,6 +31,6 @@ export function usePageMeta({ title, description, path, image, noindex, canonica
     setTag('meta[property="og:title"]', "property", "og:title", title);
     setTag('meta[property="og:description"]', "property", "og:description", description);
     setTag('meta[property="og:url"]', "property", "og:url", canonicalUrl);
-    if (image) setTag('meta[property="og:image"]', "property", "og:image", SITE_URL + image);
+    if (image) setTag('meta[property="og:image"]', "property", "og:image", image.startsWith("http") ? image : SITE_URL + image);
   }, [title, description, path, image, noindex, canonicalPath]);
 }

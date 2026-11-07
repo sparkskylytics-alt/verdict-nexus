@@ -41,6 +41,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import { usePageMeta } from "./lib/usePageMeta";
+import { useSiteContent } from "./content/SiteContent";
 import DisclaimerModal from "./components/DisclaimerModel";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -91,6 +92,7 @@ function App() {
   const [accepted, setAccepted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { siteSettings } = useSiteContent();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -100,8 +102,12 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const meta = PAGE_META[location.pathname] ?? PAGE_META["/"];
-  usePageMeta({ ...meta, path: location.pathname });
+  const baseMeta = PAGE_META[location.pathname] ?? PAGE_META["/"];
+  const isHomeMeta = baseMeta === PAGE_META["/"] || baseMeta === PAGE_META["/Home"];
+  const meta = isHomeMeta
+    ? { ...baseMeta, title: siteSettings.seoTitle, description: siteSettings.seoDescription }
+    : baseMeta;
+  usePageMeta({ ...meta, path: location.pathname, image: siteSettings.shareImage });
 
   return (
     <>

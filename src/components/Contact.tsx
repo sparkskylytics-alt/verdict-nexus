@@ -1,5 +1,6 @@
 // import React, { useState } from 'react';
 // import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { useSiteContent } from '../content/SiteContent';
 // import SectionTitle from './ui/SectionTitle';
 
 // interface FormState {
@@ -315,6 +316,7 @@ interface ContactInfo {
 }
 
 const Contact = () => {
+  const { contactSection } = useSiteContent();
   const [formState, setFormState] = useState<FormState>({
     name: '',
     email: '',
@@ -385,38 +387,7 @@ const Contact = () => {
     }
   };
 
-  const contactInfo: ContactInfo[] = [
-    {
-      icon: "/Icons/location.png",
-      title: "Greater Noida Office",
-      content: "S-211, Gayatri Life Suites, Greater Noida West, Sector-1, 201302",
-    },
-    {
-      icon: "/Icons/location.png",
-      title: "Mumbai Office",
-      content: "9, 1st Floor, Western India House, Above Bombay Store, Sir P. M. Road, Fort, Mumbai 400001.",
-    },
-    {
-      icon: "/Icons/location.png",
-      title: "Gurugram Office",
-      content: "House No. 238/18, Behind Ganga Apartment, Sector-11, Gurugram 122001",
-    },
-    {
-      icon: "/Icons/telephone.png",
-      title: "Phone Number",
-      content: "+91 9310654386  |  +91 9632784891",
-    },
-    {
-      icon: "/Icons/email.png",
-      title: "Email Address",
-      content: "advocatekhojshashi@gmail.com",
-    },
-    {
-      icon: "/Icons/working-time.png",
-      title: "Business Hours",
-      content: "Mon-Fri: 9AM-6PM | Sat: 10AM-2PM",
-    },
-  ];
+  const contactInfo: ContactInfo[] = contactSection.items;
 
   return (
     <section id="contact" className="relative py-8 font-montserrat overflow-hidden bg-gray-50">
@@ -457,10 +428,10 @@ const Contact = () => {
         <div className="text-center mb-10">
           <div className="w-14 h-[2px] bg-[#5C6F7A] mx-auto mb-4"></div>
           <h2 className="text-xl md:text-2xl font-semibold text-[#2F3336]">
-            Contact Us
+            {contactSection.title}
           </h2>
           <p className="text-[#5C6F7A] text-sm mt-2">
-            Schedule a consultation or send us a message
+            {contactSection.subtitle}
           </p>
         </div>
 
@@ -534,12 +505,12 @@ const Contact = () => {
               "
             >
               <h3 className="text-lg font-semibold text-[#2F3336] mb-4">
-                Free Case Evaluation
+                {contactSection.formTitle}
               </h3>
 
               {submitted && (
                 <div className="bg-green-50 text-green-700 text-sm p-3 rounded-lg mb-4 animate-fadeIn">
-                  Thank you! We'll respond within 24 hours.
+                  {contactSection.successMessage}
                 </div>
               )}
 
@@ -637,16 +608,9 @@ const Contact = () => {
                       required
                     >
                       <option value="">Select Case Type</option>
-                      <option value="Civil Litigation">Civil Litigation</option>
-                      <option value="Family Law">Family Law</option>
-                      <option value="Corporate Law">Corporate Law</option>
-                      <option value="Real Estate">Real Estate</option>
-                      <option value="Criminal Defense">Criminal Defense</option>
-                      <option value="Intellectual Property">Intellectual Property</option>
-                      <option value="Constitutional Law">Constitutional Law</option>
-                      <option value="Documentation">Documentation</option>
-                      <option value="ITR Services">ITR Services</option>
-                      <option value="Other">Other</option>
+                      {contactSection.caseTypes.map((t) => (
+                        <option key={t} value={t}>{t}</option>
+                      ))}
                     </select>
                   </div>
                 </div>
@@ -725,7 +689,7 @@ const Contact = () => {
                     ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}
                   `}
                 >
-                  {isSubmitting ? 'Submitting...' : 'Submit Request'}
+                  {isSubmitting ? 'Submitting...' : contactSection.submitLabel}
                 </button>
               </form>
             </div>
