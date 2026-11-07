@@ -52,7 +52,7 @@ export function SiteContentProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let cancelled = false;
     setError(false);
-    fetch(`${API}?query=${encodeURIComponent(QUERY)}`)
+    fetch(`${API}?query=${encodeURIComponent(QUERY)}`, { cache: "no-cache" })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((json) => {
         const r = json?.result;
