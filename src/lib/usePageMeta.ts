@@ -9,6 +9,7 @@ type Meta = {
   image?: string;
   noindex?: boolean;
   canonicalPath?: string;
+  skip?: boolean;
 };
 
 function setTag(selector: string, attr: string, key: string, value: string) {
@@ -21,8 +22,9 @@ function setTag(selector: string, attr: string, key: string, value: string) {
   el.setAttribute(selector.startsWith("link") ? "href" : "content", value);
 }
 
-export function usePageMeta({ title, description, path, image, noindex, canonicalPath }: Meta) {
+export function usePageMeta({ title, description, path, image, noindex, canonicalPath, skip }: Meta) {
   useEffect(() => {
+    if (skip) return;
     const canonicalUrl = SITE_URL + (canonicalPath ?? path);
     document.title = title;
     setTag('meta[name="description"]', "name", "description", description);
@@ -32,5 +34,5 @@ export function usePageMeta({ title, description, path, image, noindex, canonica
     setTag('meta[property="og:description"]', "property", "og:description", description);
     setTag('meta[property="og:url"]', "property", "og:url", canonicalUrl);
     if (image) setTag('meta[property="og:image"]', "property", "og:image", image.startsWith("http") ? image : SITE_URL + image);
-  }, [title, description, path, image, noindex, canonicalPath]);
+  }, [title, description, path, image, noindex, canonicalPath, skip]);
 }

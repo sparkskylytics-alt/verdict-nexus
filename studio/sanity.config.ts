@@ -17,14 +17,16 @@ export default defineConfig({
       structure: (S) =>
         S.list()
           .title('Website Content')
-          .items(
-            singletons.map((s) =>
+          .items([
+            S.listItem().title('Service / City Pages (SEO)').id('landingPage').child(S.documentTypeList('landingPage').title('Service / City Pages')),
+            S.divider(),
+            ...singletons.map((s) =>
               S.listItem()
                 .title(s.title)
                 .id(s.name)
                 .child(S.document().schemaType(s.name).documentId(s.name).title(s.title)),
             ),
-          ),
+          ]),
     }),
     visionTool(),
   ],

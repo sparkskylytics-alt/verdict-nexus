@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 import type seed from "../../studio/scripts/seed-data.json";
 
 // Shape of the content (type only - no data is bundled with the site).
-export type SiteContent = typeof seed;
+export type SiteContent = typeof seed & { landingLinks: { title: string; slug: string }[] };
 
 // Requests go through a same-origin proxy (see vercel.json / vite.config.ts)
 const API = "/sanity-api/v2024-01-01/data/query/production";
@@ -21,7 +21,8 @@ const QUERY = `{
   "teamSection": *[_id=="teamSection"][0]{ ..., ${list("members", `[]{ name, role, bio, ${img("photo")} }`)} },
   "faqSection": *[_id=="faqSection"][0]{ ..., ${list("faqs")} },
   "contactSection": *[_id=="contactSection"][0]{ ..., ${list("items", `[]{ title, content, ${img("icon")} }`)}, ${list("caseTypes")} },
-  "disclaimerSection": *[_id=="disclaimerSection"][0]
+  "disclaimerSection": *[_id=="disclaimerSection"][0],
+  "landingLinks": *[_type=="landingPage"] | order(order asc){ title, "slug": slug.current }
 }`;
 
 const Ctx = createContext<SiteContent | null>(null);

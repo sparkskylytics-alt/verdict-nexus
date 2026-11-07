@@ -116,11 +116,11 @@
 // };
 
 // export default Footer;
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useSiteContent } from '../content/SiteContent';
 
 const Footer = () => {
-  const { siteSettings: ss } = useSiteContent();
+  const { siteSettings: ss, landingLinks } = useSiteContent();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -343,6 +343,21 @@ const Footer = () => {
               </button>
             </div>
           </div>
+          {/* Service / city pages */}
+          {landingLinks.length > 0 && (
+            <div className="md:col-span-4">
+              <h3 className="font-semibold mb-3 text-sm">Areas of Practice by Location</h3>
+              <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-2 text-sm">
+                {landingLinks.map((l) => (
+                  <li key={l.slug}>
+                    <Link to={`/${l.slug}`} className="text-[#CFC7B8] hover:text-white transition-colors">
+                      {l.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         {/* Bottom Bar */}

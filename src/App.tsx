@@ -61,6 +61,7 @@ import OrdersPage from "../src/pages/OrderPage";
 import JudgmentPage from "../src/pages/JudgmentPage";
 import HomePage from "./pages/Home";
 import EduHome from "./pages/EduHome";
+import LandingPage from "./pages/LandingPage";
 
 
 const PAGE_META: Record<string, { title: string; description: string; noindex?: boolean; canonicalPath?: string }> = {
@@ -107,7 +108,12 @@ function App() {
   const meta = isHomeMeta
     ? { ...baseMeta, title: siteSettings.seoTitle, description: siteSettings.seoDescription }
     : baseMeta;
-  usePageMeta({ ...meta, path: location.pathname, image: siteSettings.shareImage });
+  usePageMeta({
+    ...meta,
+    path: location.pathname,
+    image: siteSettings.shareImage,
+    skip: !(location.pathname in PAGE_META), // landing pages set their own meta
+  });
 
   return (
     <>
@@ -142,6 +148,9 @@ function App() {
         <Route path="/Home" element={<HomePage />} />
                 <Route path="/EduHome" element={<EduHome />} />
 
+
+        {/* 🔎 SERVICE / CITY PAGES (content from Sanity) */}
+        <Route path="/:slug" element={<LandingPage scrolled={scrolled} />} />
 
         {/* 🔐 ADMIN ROUTES */}
         <Route path="/admin" element={<AdminLayout />}>

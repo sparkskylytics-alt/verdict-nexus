@@ -166,7 +166,58 @@ export const disclaimerSection = singleton('disclaimerSection', [
   str('buttonLabel', 'Button Text'),
 ])
 
+export const landingPage = defineType({
+  name: 'landingPage',
+  title: 'Service / City Page',
+  type: 'document',
+  fields: [
+    defineField({name: 'title', title: 'Short Name (used in links)', type: 'string', validation: (r) => r.required()}),
+    defineField({
+      name: 'slug',
+      title: 'Page Address (URL)',
+      type: 'slug',
+      options: {source: 'title', maxLength: 80},
+      description: 'Appears as www.verdictnexus.in/<this>',
+      validation: (r) => r.required(),
+    }),
+    defineField({name: 'order', title: 'Order in lists', type: 'number'}),
+    str('city', 'City / Area'),
+    str('seoTitle', 'SEO Title (about 60 characters)'),
+    txt('seoDescription', 'SEO Description (about 155 characters)'),
+    str('h1', 'Main Heading'),
+    txt('intro', 'Introduction (blank line = new paragraph)', 6),
+    defineField({
+      name: 'sections',
+      title: 'Sections',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [str('heading', 'Heading'), txt('body', 'Text (blank line = new paragraph)', 6), strList('points', 'Bullet Points')],
+          preview: {select: {title: 'heading', subtitle: 'body'}},
+        },
+      ],
+    }),
+    defineField({
+      name: 'faqs',
+      title: 'Questions',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [str('question', 'Question'), txt('answer', 'Answer', 5)],
+          preview: {select: {title: 'question', subtitle: 'answer'}},
+        },
+      ],
+    }),
+    txt('note', 'Notice at bottom of page', 3),
+  ],
+  orderings: [{title: 'Order', name: 'order', by: [{field: 'order', direction: 'asc'}]}],
+  preview: {select: {title: 'title', subtitle: 'slug.current'}},
+})
+
 export const schemaTypes = [
+  landingPage,
   siteSettings,
   heroSection,
   clientsSection,
