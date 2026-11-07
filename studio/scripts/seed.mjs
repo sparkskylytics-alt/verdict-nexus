@@ -7,7 +7,7 @@ import {fileURLToPath} from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const publicDir = resolve(__dirname, '../../public')
-const defaults = JSON.parse(readFileSync(resolve(__dirname, '../../src/content/defaults.json'), 'utf8'))
+const defaults = JSON.parse(readFileSync(resolve(__dirname, './seed-data.json'), 'utf8'))
 
 const token = process.env.SANITY_TOKEN
 if (!token) throw new Error('Set SANITY_TOKEN')

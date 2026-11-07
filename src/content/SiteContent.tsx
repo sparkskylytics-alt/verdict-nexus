@@ -1,77 +1,78 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import defaults from "./defaults.json";
+import type seed from "../../studio/scripts/seed-data.json";
 
-export type SiteContent = typeof defaults;
+// Shape of the content (type only - no data is bundled with the site).
+export type SiteContent = typeof seed;
 
 // Requests go through a same-origin proxy (see vercel.json / vite.config.ts)
 const API = "/sanity-api/v2024-01-01/data/query/production";
 
 const img = (k: string) => `"${k}": ${k}.asset->url`;
+const list = (k: string, projection = "") => `"${k}": coalesce(${k}, [])${projection}`;
 
 const QUERY = `{
   "siteSettings": *[_id=="siteSettings"][0]{
-    ..., ${img("navbarLogo")}, ${img("footerLogo")}, ${img("favicon")}, ${img("shareImage")}
+    ..., ${img("navbarLogo")}, ${img("footerLogo")}, ${img("favicon")}, ${img("shareImage")},
+    ${list("navItems")}, ${list("footerPracticeAreas")}, ${list("seoKeywords")}
   },
   "heroSection": *[_id=="heroSection"][0]{ ..., ${img("image")} },
-  "clientsSection": *[_id=="clientsSection"][0]{ ..., clients[]{ name, ${img("logo")} } },
-  "practiceAreasSection": *[_id=="practiceAreasSection"][0]{ ..., areas[]{ title, description, ${img("icon")} } },
-  "teamSection": *[_id=="teamSection"][0]{ ..., members[]{ name, role, bio, ${img("photo")} } },
-  "faqSection": *[_id=="faqSection"][0],
-  "contactSection": *[_id=="contactSection"][0]{ ..., items[]{ title, content, ${img("icon")} } },
+  "clientsSection": *[_id=="clientsSection"][0]{ ..., ${list("clients", `[]{ name, ${img("logo")} }`)} },
+  "practiceAreasSection": *[_id=="practiceAreasSection"][0]{ ..., ${list("areas", `[]{ title, description, ${img("icon")} }`)} },
+  "teamSection": *[_id=="teamSection"][0]{ ..., ${list("members", `[]{ name, role, bio, ${img("photo")} }`)} },
+  "faqSection": *[_id=="faqSection"][0]{ ..., ${list("faqs")} },
+  "contactSection": *[_id=="contactSection"][0]{ ..., ${list("items", `[]{ title, content, ${img("icon")} }`)}, ${list("caseTypes")} },
   "disclaimerSection": *[_id=="disclaimerSection"][0]
 }`;
 
-const imgUrl = (u?: string | null) =>
-  u && u.startsWith("https://cdn.sanity.io") ? `${u}?auto=format` : u ?? "";
+const Ctx = createContext<SiteContent | null>(null);
 
-/** Use CMS value when present, otherwise keep the built-in default. */
-function merge<T>(base: T, incoming: unknown): T {
-  if (incoming === null || incoming === undefined) return base;
-  if (Array.isArray(base) || Array.isArray(incoming)) return incoming as T;
-  if (typeof base === "object" && base !== null && typeof incoming === "object") {
-    const out: Record<string, unknown> = { ...(base as object) };
-    for (const [k, v] of Object.entries(incoming as object)) {
-      if (k.startsWith("_")) continue;
-      out[k] = merge((base as Record<string, unknown>)[k], v);
-    }
-    return out as T;
-  }
-  return incoming as T;
+export function useSiteContent(): SiteContent {
+  const c = useContext(Ctx);
+  if (!c) throw new Error("useSiteContent must be used inside SiteContentProvider");
+  return c;
 }
 
-const IMAGE_KEYS = new Set(["navbarLogo", "footerLogo", "favicon", "shareImage", "image", "logo", "icon", "photo"]);
-function fixImages(value: unknown, key?: string): unknown {
-  if (Array.isArray(value)) return value.map((v) => fixImages(v));
-  if (value && typeof value === "object")
-    return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, fixImages(v, k)]));
-  if (typeof value === "string" && key && IMAGE_KEYS.has(key)) return imgUrl(value);
-  return value;
-}
-
-const Ctx = createContext<SiteContent>(defaults);
-
-export const useSiteContent = () => useContext(Ctx);
+const centered: React.CSSProperties = {
+  minHeight: "100vh",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: 16,
+  fontFamily: "Montserrat, sans-serif",
+  color: "#2F3336",
+  background: "#fff",
+};
 
 export function SiteContentProvider({ children }: { children: ReactNode }) {
-  const [content, setContent] = useState<SiteContent>(defaults);
+  const [content, setContent] = useState<SiteContent | null>(null);
+  const [error, setError] = useState(false);
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
+    setError(false);
     fetch(`${API}?query=${encodeURIComponent(QUERY)}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((json) => {
-        if (cancelled || !json?.result) return;
-        setContent(merge(defaults, fixImages(json.result)));
+        const r = json?.result;
+        if (cancelled) return;
+        if (!r || Object.values(r).some((v) => v === null)) throw new Error("Missing content in Sanity");
+        setContent(r as SiteContent);
       })
-      .catch((e) => console.warn("Sanity content unavailable, using defaults:", e));
+      .catch((e) => {
+        console.error("Failed to load content from Sanity:", e);
+        if (!cancelled) setError(true);
+      });
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [attempt]);
 
-  // Favicon + SEO keywords driven by CMS
-  const { favicon, seoKeywords } = content.siteSettings;
+  const favicon = content?.siteSettings.favicon;
+  const keywords = content?.siteSettings.seoKeywords;
   useEffect(() => {
+    if (!content) return;
     if (favicon) {
       let link = document.head.querySelector<HTMLLinkElement>('link[rel="icon"]');
       if (!link) {
@@ -88,8 +89,38 @@ export function SiteContentProvider({ children }: { children: ReactNode }) {
       kw.name = "keywords";
       document.head.appendChild(kw);
     }
-    kw.content = (seoKeywords ?? []).join(", ");
-  }, [favicon, seoKeywords]);
+    kw.content = (keywords ?? []).join(", ");
+  }, [content, favicon, keywords]);
+
+  if (error)
+    return (
+      <div style={centered}>
+        <p>Unable to load the website content.</p>
+        <button
+          onClick={() => setAttempt((a) => a + 1)}
+          style={{ padding: "8px 20px", background: "#5C6F7A", color: "#fff", borderRadius: 6 }}
+        >
+          Try again
+        </button>
+      </div>
+    );
+
+  if (!content)
+    return (
+      <div style={centered}>
+        <div
+          style={{
+            width: 36,
+            height: 36,
+            border: "3px solid #ddd",
+            borderTopColor: "#5C6F7A",
+            borderRadius: "50%",
+            animation: "vn-spin 0.8s linear infinite",
+          }}
+        />
+        <style>{`@keyframes vn-spin{to{transform:rotate(360deg)}}`}</style>
+      </div>
+    );
 
   return <Ctx.Provider value={content}>{children}</Ctx.Provider>;
 }
